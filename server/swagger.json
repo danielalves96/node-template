@@ -1,0 +1,227 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Node template",
+    "description": "Node template by Daniel Alves",
+    "version": "1.0.0"
+  },
+  "basePath": "/",
+  "paths": {
+    "/user": {
+      "post": {
+        "description": "Create a new user",
+        "summary": "Create a new user",
+        "tags": ["Users"],
+        "requestBody": {
+          "description": "Data required to insert a new user",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/requestUser"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/responseUser"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "An error has occurred"
+          }
+        }
+      },
+      "get": {
+        "description": "Get all users",
+        "summary": "Get all users",
+        "tags": ["Users"],
+        "responses": {
+          "200": {
+            "description": "Successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/responseUser"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "An error has occurred"
+          }
+        }
+      }
+    },
+    "/user/{id}": {
+      "get": {
+        "description": "Get an user by ID",
+        "summary": "Get an user by ID",
+        "tags": ["Users"],
+        "parameters": [
+          {
+            "name": "id",
+            "type": "string",
+            "in": "path",
+            "description": "ID of user",
+            "required": "true"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User found successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/responseUser"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "An error has occurred"
+          }
+        }
+      },
+      "put": {
+        "description": "Update an user by ID",
+        "summary": "Update an user by ID",
+        "tags": ["Users"],
+        "requestBody": {
+          "description": "Data required to update a new user",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/requestUser"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "type": "string",
+            "in": "path",
+            "description": "ID of user",
+            "required": "true"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User found successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/responseUser"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "An error has occurred"
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete an user",
+        "summary": "Delete an user",
+        "tags": ["Users"],
+        "parameters": [
+          {
+            "name": "id",
+            "type": "string",
+            "in": "path",
+            "description": "ID of user",
+            "required": "true"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User deleted successfully"
+          },
+          "400": {
+            "description": "An error has occurred"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "requestUser": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of user to be created",
+            "example": "Daniel Luiz Alves"
+          },
+          "password": {
+            "type": "string",
+            "description": "Password of user to be created, with at least 6 characters",
+            "example": "123456"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email of user to be created",
+            "example": "user@email.com"
+          },
+          "phone": {
+            "type": "string",
+            "description": "Phone of user to be created",
+            "example": "41 998888993"
+          }
+        }
+      },
+      "responseUser": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of user to be created",
+            "example": "Daniel Luiz Alves"
+          },
+          "password": {
+            "type": "string",
+            "description": "Password of user to be created, with at least 6 characters",
+            "example": "123456"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email of user to be created",
+            "example": "user@email.com"
+          },
+          "phone": {
+            "type": "string",
+            "description": "Phone of user to be created",
+            "example": "41 998888993"
+          },
+          "id": {
+            "type": "string",
+            "description": "Id of created user",
+            "format": "uuid"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Date of creation of user",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Date of user was updated",
+            "format": "date-time"
+          }
+        }
+      }
+    }
+  }
+}
