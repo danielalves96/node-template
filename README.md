@@ -57,4 +57,4 @@ bun dev
 
 ### Routes Documentation
 
-For API documentation, we have the /api-docs route, and for general documentation, we have the /docs route.
+For API documentation, we have the `/api-docs` route, and for general documentation, we have the `/docs` route.
